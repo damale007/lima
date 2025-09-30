@@ -1,0 +1,19 @@
+:root {
+    --colorOscuro: #113b57;
+    --colorDestacado: #3498db;
+    --colorClaro: #94ccf1;
+    --fondoClaro: #ddd;
+    --fondoOscuro: #222;
+    --textoClaro: black;
+    --textoOscuro: white;
+
+    --textoNormal: 1.8rem;
+    --textoMini: 1.4rem;
+    --textoDestacado: 2.5rem;
+    --textoTitulo: 4rem;
+    --textoSuper: 6rem; 
+
+    --margen-grande: 2rem;
+    --margen-tarjeta: 1rem; 
+    --redondeadoBoton: 0.3rem;
+}

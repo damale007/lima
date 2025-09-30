@@ -1,0 +1,175 @@
+@import url("variables.css");
+
+<!-- Generales
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  background: var(--fondoClaro);
+  color: var(--textoClaro);
+}
+
+a {
+    text-decoration: none;
+    color: var(--colorDestacado);
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+.error {
+  width: 50%;
+  padding: 0.3rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+  background: red;
+  border-radius: 0.2rem;
+  border-left: 8px solid color-mix(in srgb, red, 20%);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ajuste {
+    margin: 0px auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.celdaMedia {
+    width: 50%;
+}
+
+.celdaTercio {
+    width: 33%;
+}
+
+.celdaDosTercios {
+    width: 66%;
+}
+
+.centrado {
+    text-align: center;
+    margin: auto;
+}
+
+.negrita {
+    font-weight: bold;
+}
+
+.texto {
+    font-size: var(--textoNormal);
+}
+
+.textoMini {
+    font-size: var(--textoMini);
+}
+
+.textoDestacado {
+    font-size: var(--textoDestacado);
+    font-weight: bold;
+}
+
+.textoTitulo {
+    font-size: var(--textoTitulo);
+}
+
+.textoSuper {
+    font-size: var(--textoSuper);
+}
+
+<!-- Paginación 
+
+.indice {
+    text-align: center;
+}
+
+.indice .paginaIndice {
+    padding: 2px;
+}
+
+.indice .paginaActual {
+    padding: 2px;
+    background: green;
+    color: white;
+}
+
+.botonIndiceAnterior {
+    margin-right: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid darkgreen;
+    background: lightgreen;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.botonIndiceSiguiente {
+    margin-left: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid darkgreen;
+    background: lightgreen;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.formulario {
+    width: 60%;
+    background: white;
+    border: 1px solid #777;
+    border-radius: var(--redondeadoBoton);
+}
+
+.formulario input, .formulario textarea, .formulario select {
+    border: 1px solid var(--colorDestacado);
+    border-radius: var(--redondeadoBoton);
+}
+
+.formulario input[type="submit"] .boton {
+    background: var(--colorDestacado);
+    padding: 0.3rem 1.5rem 0.3rem 1.5rem;
+    border: 1px solid var(--colorClaro);
+    border-radius: var(--redondeadoBoton);
+    transition: all 0.5s;
+}
+
+.boton:hover, .formulario input[type="submit"]:hover {
+    background: var(--colorClaro);
+    color: black;
+}
+
+@media (min-width: 768px) {
+    .formulario {
+        width: 90%;
+    }
+
+    .ajuste {
+        justify-content: space-around;
+    }
+
+    .celdaMedia, .celtaTercio, .celdaDosTercios {
+        width: 100%;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        background: var(--fondoOscuro);
+        color: var(--textoOscuro);
+    }
+
+    .formulario{
+        background: black;
+    }
+}
