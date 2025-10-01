@@ -36,4 +36,4 @@ La web (www.callecabo.com) es un ejemplo de aplicación compleja desarrollada, y
 *   Capacidad para **apuntarse a Romerías** y realizar **trámites de Secretaría**.
 
 Enlace a la documentación y descarga: https://limaframework.netlify.app
-Enlace para el CLI de Lima: https://github.com/damale007/lima-CLI/tree/main
+Enlace para el CLI de Lima: https://github.com/damale007/lima-CLI
