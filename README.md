@@ -1,9 +1,3 @@
-¡Absolutamente! Basándome en la información proporcionada, aquí tienes una estructura completa y el contenido para un archivo `README.md` de GitHub sobre LIMA 1.0.
-
-El contenido se enfoca en las características, la tecnología y el uso del *framework*, tal como se describe en las fuentes.
-
-***
-
 # LIMA 1.0: Framework Ligero de PHP para Aplicaciones Web en MVC
 
 ## Descripción del Proyecto
@@ -31,7 +25,7 @@ Es un *framework* destacado por ser **muy ligero y fácil de usar**.
 
 ## Uso en Producción (Ejemplo)
 
-Actualmente, el *framework* LIMA está siendo utilizado para adaptar a MVC la **Web de la Hermandad de la Santa Cruz de la Calle Cabo**. Esta web está construida originalmente en HTML5, CSS3, Javascript, PHP y MYSQL.
+Actualmente, el *framework* LIMA está siendo utilizado para adaptar a MVC la **Web de la Hermandad de la Santa Cruz de la Calle Cabo**. La nueva versión estará disponible en abril. Esta web está construida originalmente en HTML5, CSS3, Javascript, PHP y MYSQL.
 
 La web (www.callecabo.com) es un ejemplo de aplicación compleja desarrollada, ya que incluye numerosas funcionalidades, tales como:
 
@@ -40,9 +34,3 @@ La web (www.callecabo.com) es un ejemplo de aplicación compleja desarrollada, y
 *   Participación en **Comunidad**, que es una red social propia de la web.
 *   Gestiones avanzadas, incluyendo la realización de **pujas, subastas y reserva de entradas**.
 *   Capacidad para **apuntarse a Romerías** y realizar **trámites de Secretaría**.
-
-## Información Adicional y Contacto
-
-LIMA es un proyecto desarrollado por David Martínez Leal.
-
-*   **Web de LIMA** (o la web que lo utiliza): www.callecabo.com.
