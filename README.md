@@ -34,3 +34,5 @@ La web (www.callecabo.com) es un ejemplo de aplicación compleja desarrollada, y
 *   Participación en **Comunidad**, que es una red social propia de la web.
 *   Gestiones avanzadas, incluyendo la realización de **pujas, subastas y reserva de entradas**.
 *   Capacidad para **apuntarse a Romerías** y realizar **trámites de Secretaría**.
+
+Enlace para el CLI de Lima: https://github.com/damale007/lima-CLI/tree/main
