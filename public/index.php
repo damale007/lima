@@ -1,12 +1,20 @@
 <?php
-require_once '../app/includes/app.php';
+require "../app/includes/includes.php";
 
+set_exception_handler(['MVC\Error', 'exceptionHandler']);
+
+use Modelo\ActiveRecord;
 use MVC\Router;
-use Controlador\HomeController;
+
+// Conectarnos a la base de datos
+//$db = conectarDB();
+$db = new DataBase();
+
+ActiveRecord::setDB($db);
 
 $router = new Router();
 
-	$router->get('/', [HomeController::Class, 'home']);
+include "../app/includes/routes.php";
 
 $router->comprobarRutas();
-?>
+

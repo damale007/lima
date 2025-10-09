@@ -4,9 +4,9 @@
     define('CARPETA_IMAGENES', __DIR__ . '/../imagenes/');
 
 	define('DB_HOST', 'localhost');
-	define('DB_USER', 'damale');
-	define('DB_PASSWORD', 'divad');
-	define('DATABASE', 'callecabo');
+	define('DB_USER', 'usuario');
+	define('DB_PASSWORD', 'contraseña');
+	define('DATABASE', 'basededatos');
 
     define("TR_BEGIN", 0);
     define("TR_COMMIT", 1);

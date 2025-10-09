@@ -6,23 +6,17 @@ define('PERMISO', 1);
 define('NO_PERMISO', 2);
 
 class Router {
-    public $rutasGET = [];
-    public $rutasPOST = [];
+    public $rutas = [];
     public $rutasMiddl = [];
     public $parametros = [];
     private $ruta;
-    private $method;
     private $metodo;
     private $controlador;
 	public $link404 = ERROR404;
     private $alerts = [];
 
-    public function get($url, $fn){
-        $this->rutasGET[] = ["url" => $url, "funcion" => $fn];
-    }
-
-    public function post($url, $fn){
-        $this->rutasPOST[] = ["url" => $url, "funcion" => $fn];
+    public function route($url, $fn){
+        $this->rutas[] = ["url" => $url, "funcion" => $fn];
     }
 
     public function middleware($controlador, $metodo, $middleware){
@@ -34,7 +28,7 @@ class Router {
     }
 
     public function getMethod(){
-        return $this->method;
+        return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
     function getIP() {
@@ -59,19 +53,12 @@ class Router {
     }
 
     public function getRuta() {
-       $rutas = [];
-
-        if ($this->method === 'get')
-            $rutas = $this->rutasGET;
-        else
-            $rutas = $this->rutasPOST;
-
         $ret = ["", "", "", ""];
 
         $divide = explode("/", $this->ruta);
         $numDivide = count($divide) -1;
 
-        foreach($rutas as $linea) {
+        foreach($this->rutas as $linea) {
             $barras = substr_count($linea['url'], "/");
 
             $compara = "";
@@ -86,17 +73,22 @@ class Router {
                 $params = substr($this->ruta, strlen($linea['url']));
                 if (strlen($params)< $ret[2] || $ret[2] == ""){
                     $middleware = "";
-                    if (count($linea['funcion'])>2)
-                        $middleware = $linea['funcion'][2];
-                    $ret=[$linea['funcion'][0], $linea['funcion'][1], explode("/", $params), $middleware];
+
+                    if (gettype($linea['funcion']) == 'string') 
+                        $ret = $linea['funcion'];
+                    else {
+                        if (count($linea['funcion'])>2)
+                            $middleware = $linea['funcion'][2];
+                        $ret = [$linea['funcion'][0], $linea['funcion'][1], explode("/", $params), $middleware];
+
+                        if ($ret[0] == "" && $ret[1] == "" && $ret[2] == "")
+                            $ret = null;
+                    }
                 }
             }
         }
 
-        if ($ret[0] == "" && $ret[1] == "" && $ret[2] == "")
-            return null;
-        else
-            return $ret;
+        return $ret;
     }
 
     public function getAllParams() {
@@ -320,42 +312,45 @@ class Router {
         if ($fn == null) 
             $this->redirecciona("error404");
         
-        $this->parametros = $fn[2];
+        if (gettype($fn) == "string")
+            $this->render($fn, []);
+        else {
+            $this->parametros = $fn[2];
 
-        $last = strpos($fn[0], "\\") + 1;
-        $nombre = substr($fn[0], $last);
-        $archivo = '../app/controladores/'.$nombre.'.php';
-        if (file_exists($archivo)) {
-            include_once "../app/controladores/".$nombre.".php";
+            $last = strpos($fn[0], "\\") + 1;
+            $nombre = substr($fn[0], $last);
+            $archivo = '../app/controladores/'.$nombre.'.php';
+            if (file_exists($archivo)) {
+                include_once "../app/controladores/".$nombre.".php";
 
-            if ($fn) {
-                $this->metodo = $fn[1];
-                $this->controlador = substr($fn[0], 12);
-                session_start();
+                if ($fn) {
+                    $this->metodo = $fn[1];
+                    $this->controlador = substr($fn[0], 12);
+                    session_start();
 
-                $permiso = NO_INIC;
-                foreach($this->rutasMiddl as $md){
-                    if (($md['controlador'] == substr($fn[0], 12) || $md['controlador'] == "*") && ($md['metodo'] == $fn[1] || $md['metodo'] == "*")) 
-                        if (call_user_func(["MVC\Middleware", $md['nombre']], $this))
-                            $permiso = PERMISO;
-                        else 
-                            $permiso = NO_PERMISO;
-                }
+                    $permiso = NO_INIC;
+                    foreach($this->rutasMiddl as $md){
+                        if (($md['controlador'] == substr($fn[0], 12) || $md['controlador'] == "*") && ($md['metodo'] == $fn[1] || $md['metodo'] == "*")) 
+                            if (call_user_func(["MVC\Middleware", $md['nombre']], $this))
+                                $permiso = PERMISO;
+                            else 
+                                $permiso = NO_PERMISO;
+                    }
 
-                if ($permiso == PERMISO || $permiso == NO_INIC) {
-                    if ($fn[3] != "") {
-                        if (call_user_func(["MVC\Middleware", $fn[3]], $this))  
+                    if ($permiso == PERMISO || $permiso == NO_INIC) {
+                        if ($fn[3] != "") {
+                            if (call_user_func(["MVC\Middleware", $fn[3]], $this)) 
+                                call_user_func([$fn[0], $fn[1]], $this);
+                            else
+                                $this->redirecciona("errorMiddl");
+                        } else
                             call_user_func([$fn[0], $fn[1]], $this);
-                        else 
-                            $this->redirecciona("errorMiddl");
-                    } else 
-                        call_user_func([$fn[0], $fn[1]], $this);
-                }
-            } else {
-                $this->redirecciona("error404");
-            }
-        } else 
-            echo "ERROR: Controlador no existe.";
+                    }
+                } else
+                    $this->redirecciona("error404");
+            } else 
+                echo "ERROR: Controlador no existe.";
+        }
     }
 
     private function redirecciona($redir) {

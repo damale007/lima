@@ -25,6 +25,18 @@ function debug($variable, $parar = true) {
     if ($parar) exit;
 }
 
+function loadURL($url) {
+    $ch = curl_init();  
+    curl_setopt($ch, CURLOPT_URL, $url);  
+    curl_setopt($ch, CURLOPT_HEADER, true);  //queremos las cabeceras de la respuesta
+    curl_setopt($ch, CURLOPT_NOBODY, false);  //no queremos el cuerpo de la respuesta
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  //el resultado lo almacenaremos en una cadena
+    $data = curl_exec($ch);
+    curl_close($ch);
+
+    return $data;
+}
+
 function createFormToken() {
     Session::set('FormToken', bin2hex(random_bytes(16)));
     echo '<input type="hidden" value="'.Session::get('FormToken').'" name="token">';
